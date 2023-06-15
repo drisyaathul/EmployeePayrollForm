@@ -13,5 +13,8 @@ window.addEventListener('DOMContentLoaded', () => {
         nameError.textContent = e;
       }
     });
-  });
+});
+
+
+  
   

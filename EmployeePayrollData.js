@@ -60,7 +60,24 @@ class EmployeeParollData {
     }
 
     set start_date ( start_date ) {
-        this._start_date = start_date;
+         //check if the input is a valid Date
+         const inputDate = new Date(start_date);
+         if(isNaN(inputData.getTime())) {
+            throw new Error ("Invalid Date Format!")
+         }
+         //check if the date is not in the future
+         const currentDate = new Date();
+         if (inputDate > currentDate) {
+            throw new Error("Start date cannot be in the Future")
+         }
+         //check if the Date is within 30days of joining
+         const thirtyDaysAgo = new Date();
+         thirtyDaysAgo.setDate(currentDate.getDate() - 30);
+         if (inputDate < this.joinDate || inputDate > currentDate) {
+            throw new Error ("Start date should be within 30 days of Joining.");
+         }
+         //Set the start date if all validation checks pass
+         this.start_date = inputDate;
     }
 
     toString() {
